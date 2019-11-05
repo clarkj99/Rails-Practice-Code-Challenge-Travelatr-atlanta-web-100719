@@ -1,0 +1,16 @@
+<h1><%= @destination.name %>, <%= @destination.country %></h1>
+<h3>Recent Posts</h3>
+<ul>
+<% @destination.posts.limit(5).order(updated_at: :desc).each do |post| %>
+<li><%= post.title %> - <%= post.updated_at %></li>
+<%=  %>
+<% end %>
+</ul>
+
+<% @destination.featured_post.try do |post| %>
+<h3>Featured Post</h3>
+<p><%= link_to post.title, post_url(post) %></p>
+<% end %>
+
+<h3>Average Blogger Age: <%= @destination.average_blogger_age %></h3>
+
